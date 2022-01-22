@@ -6,13 +6,20 @@
 
   .main_center {
   
-    width: 1060px;
-    height: 100vh;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    min-height: 87vh;
     padding: 30px;
     margin: 0 auto;
     background-color: #efe9d5;
     border-left: 1px solid rgb(95, 95, 95);
     border-right: 1px solid rgb(95, 95, 95);
+  }
+
+  .msgField {
+
+    flex-grow: 1;
   }
   
   .menu {
@@ -42,5 +49,49 @@
     background-color: rgb(193, 232, 255);
     border: 1px solid rgb(177, 177, 177);
     border-radius: 5px;
+  }
+
+  .inputForm {
+    
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+
+    &_btnBox {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .textarea {
+
+    resize: none;
+    height: 62px;
+    width: auto;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .clock {
+
+    padding: 4px;
+    width: 150px;
+    text-align: center;
+    background-color: #f2f8ff;
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+  }    
+
+  .btn {
+
+    width: 100px;
+    height: 32px;
+    align-self: self-end;
+    border-radius: 5px;
+    border: 1px outset;
+    box-shadow: 0 0 3px 1px #ababab;
+    background-color: #a4e392;
   }
   

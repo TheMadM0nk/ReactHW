@@ -4,13 +4,26 @@
 }
 
 .main_center {
-  width: 1060px;
-  height: 100vh;
+  width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 87vh;
   padding: 30px;
   margin: 0 auto;
   background-color: #efe9d5;
   border-left: 1px solid #5f5f5f;
   border-right: 1px solid #5f5f5f;
+}
+
+.msgField {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .menu {
@@ -42,5 +55,57 @@
   background-color: #c1e8ff;
   border: 1px solid #b1b1b1;
   border-radius: 5px;
+}
+
+.inputForm {
+  width: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.inputForm_btnBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.textarea {
+  resize: none;
+  height: 62px;
+  width: auto;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.clock {
+  padding: 4px;
+  width: 150px;
+  text-align: center;
+  background-color: #f2f8ff;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+}
+
+.btn {
+  width: 100px;
+  height: 32px;
+  -ms-flex-item-align: self-end;
+      -ms-grid-row-align: self-end;
+      align-self: self-end;
+  border-radius: 5px;
+  border: 1px outset;
+  -webkit-box-shadow: 0 0 3px 1px #ababab;
+          box-shadow: 0 0 3px 1px #ababab;
+  background-color: #a4e392;
 }
 /*# sourceMappingURL=styles.module.css.map */
