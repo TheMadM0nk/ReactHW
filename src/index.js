@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import style from './styles.module.css';
@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     myRef.current?.focus();
-  }, []);
+  }, [myRef]);
 
   useEffect(() => {
     const lastMessage = messageList[messageList.length - 1];
@@ -38,9 +38,9 @@ const App = () => {
       timerId = setTimeout(() => {
         setMessageList([
           ...messageList,
-          { author: "Bot:", message: "Message recived!" },
+          { author: "Bot:", message: "Message recived!", style: 'botStyle' },
         ]);
-      }, 500);
+      }, 1500);
     }
 
     return () => clearInterval(timerId);
@@ -59,7 +59,7 @@ const App = () => {
 
     return (
       <span className={style.clock}>
-        Current is {time.toLocaleTimeString('Ru-ru')}
+        Current Time is {time.toLocaleTimeString('Ru-ru')}
       </span>
     );
   }
@@ -68,11 +68,8 @@ const App = () => {
     if (message) {
       setMessageList([...messageList, { author: 'User:', message: myRef.current.value }]);
       setMessage('');
-    } else {
-      alert("Введите сообщение");
-    };
-
-  }
+    }
+  };
 
   const handlePressInput = (event) => {
     if (event.code === "Enter") {
@@ -85,14 +82,14 @@ const App = () => {
     <main className={style.main_center}>
       <div className={style.msgField}>
         {messageList.map((msg, index) => (
-          <div className={style.msg_container} key={index}>
-            <h4>{msg.author}</h4>
+          <div className={`${style.msg_container} ${msg.style}`} key={index}>
+            <h5>{msg.author}&nbsp;</h5>
             <p>{msg.message}</p>
           </div>))}
       </div>
 
       <div className={style.inputForm}>
-        <input ref={myRef} value={message} onKeyPress={handlePressInput} onChange={(event) => setMessage(event.target.value)} className={style.textarea} />
+        <input ref={myRef} value={message} onKeyPress={handlePressInput} onChange={(event) => setMessage(event.target.value)} className={style.textInput} />
         <div className={style.inputForm_btnBox}>
           <Clock />
           <button className={style.btn} onClick={sendMsg}>Send</button>
