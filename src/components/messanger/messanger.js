@@ -20,7 +20,7 @@ export const Messanger = () => {
     const lastMessage = messageList[messageList.length - 1];
     let timerId = null;
 
-    if (messageList.length && lastMessage?.author !== "Bot:") {
+    if (messageList.length && lastMessage.author !== "Bot:") {
       timerId = setTimeout(() => {
         setMessageList([
           ...messageList,
