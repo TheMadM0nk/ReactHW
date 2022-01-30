@@ -1,85 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../../index.css';
+import { Clock } from './clock';
 import style from '../../styles.module.css';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-
+import { useParams } from "react-router-dom";
 
 export const Messanger = () => {
 
-  const [messageList, setMessageList] = useState([]);
-  const [message, setMessage] = useState('');
+  const [messageList, setMessageList] = useState({});
+  const [value, setValue] = useState('');
+  const { chatId } = useParams();
+  const myRef = useRef(null);
 
-  const myRef = React.createRef();
+
+  const sendMsg = useCallback(
+    (message, author = chatId, style = 'msg_container') => {
+      if (message) {
+        setMessageList((state) => ({
+          ...state,
+          [chatId]: [...(state[chatId] ?? []),
+          { author, message, date: new Date(), style }],
+        }));
+        setValue('');
+      }
+    }, [chatId]);
+
+  const handlePressInput = (e) => {
+    if (e.code === "Enter") {
+      sendMsg(value);
+    }
+  };
 
   useEffect(() => {
     myRef.current?.focus();
   }, [myRef]);
 
   useEffect(() => {
-    const lastMessage = messageList[messageList.length - 1];
+    const messages = messageList[chatId] ?? [];
+    const lastMessage = messages[messages.length - 1];
     let timerId = null;
 
-    if (messageList.length && lastMessage.author !== "Bot:") {
+    if (messages.length && lastMessage.author !== "Bot:") {
       timerId = setTimeout(() => {
-        setMessageList([
-          ...messageList,
-          { author: "Bot:", message: "Message recived!", style: 'botStyle' },
-        ]);
+        sendMsg("Message recived!", "Bot:", 'botStyle');
       }, 1500);
+      return () => clearInterval(timerId);
+
     }
+  }, [messageList, chatId, sendMsg]);
 
-    return () => clearInterval(timerId);
-  }, [messageList]);
-
-  const Clock = () => {
-    const [time, setTime] = useState(new Date());
-
-    const refreshClock = () => {
-      setTime(new Date());
-    }
-    useEffect(() => {
-      const timer = setInterval(refreshClock, 1000);
-      return () => clearInterval(timer);
-    }, [time]);
-
-    return (
-      <span className={style.clock}>
-        Current Time is {time.toLocaleTimeString('Ru-ru')}
-      </span>
-    );
-  }
-
-  const sendMsg = () => {
-    if (message) {
-      setMessageList([...messageList, { author: 'User:', message: message }]);
-      setMessage('');
-    }
-  };
-
-  const handlePressInput = (event) => {
-    if (event.code === "Enter") {
-      sendMsg();
-    }
-  };
+  const messages = messageList[chatId] ?? [];
 
   return (
 
-    <main className={style.main_center}>
+    <main className={style.noChat}>
       <div className={style.msgField}>
-        {messageList.map((msg, index) => (
-          <div className={`${style.msg_container} ${msg.style}`} key={index}>
+        {messages.map((msg, index) => (
+          <div className={msg.style} key={index}>
             <h5>{msg.author}&nbsp;</h5>
             <p>{msg.message}</p>
+            <span className={style.timeStamp}>&nbsp;{msg.date.toLocaleTimeString('Ru-ru')}</span>
           </div>))}
       </div>
 
       <div className={style.inputForm}>
-        <input ref={myRef} value={message} onKeyPress={handlePressInput} onChange={(event) => setMessage(event.target.value)} className={style.textInput} />
+        <input
+          ref={myRef}
+          value={value}
+          onKeyPress={handlePressInput}
+          onChange={(event) => setValue(event.target.value)}
+          className={style.textInput} />
         <div className={style.inputForm_btnBox}>
           <Clock />
-          <Button variant="contained" endIcon={<SendIcon />} onClick={sendMsg}>
-            Send
+          <Button
+            variant="contained"
+            endIcon={<SendIcon />}
+            onClick={() => sendMsg(value)}>Send
           </Button>
         </div>
       </div>

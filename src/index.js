@@ -1,38 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import style from './styles.module.css';
-import { Messanger, ChatList } from './components';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { NavBar } from './components';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { HomePage, ChatsPage, ProfilePage } from './pages';
 
-const App = () => {
-
-  class Banner extends React.Component {
-
-    render() {
-      return (
-        <div className={style.banner}>
-          <div className={`${style.banner_box} ${style.container}`} >
-            <h2>My React App</h2>
-          </div>
-        </div>
-      )
+const theme = createTheme({
+  palette: {
+    background: {
+      paper: '#483a7a',
     }
-  }
-
-  return (
-    <div>
-      <Banner />
-      <div className={style.appContainer}>
-        <ChatList />
-        <Messanger />
-      </div>
-    </div>
-
-  )
-}
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <NavBar />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/chats/*" element={<ChatsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/*" element={<h1>404</h1>} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

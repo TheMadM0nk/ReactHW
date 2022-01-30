@@ -30,6 +30,19 @@ body {
   border-right: 1px solid #3a3a3a;
 }
 
+.noChat {
+  width: 100%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 87vh;
+}
+
 .msgField {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -43,13 +56,13 @@ body {
           flex-direction: column;
 }
 
-.banner {
+.navBar {
   height: 60px;
-  background-color: #4e28d3;
+  background-color: #5f46b9;
   border-bottom: 1px solid #3a3a3a;
 }
 
-.banner_box {
+.navBar_box {
   height: inherit;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -57,11 +70,28 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.banner_box h2 {
+.navBar_box h2 {
   color: #ffaf50;
   text-shadow: 2px 2px 4px black;
+}
+
+.linkBox {
+  width: 220px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
 }
 
 .msg_container {
@@ -96,6 +126,9 @@ body {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  background-color: #dadeff;
+  border-radius: 10px;
+  padding: 3px 12px;
   float: right;
   color: #8d8d8d !important;
 }
@@ -103,6 +136,12 @@ body {
 .botStyle p {
   color: #8d8d8d !important;
   font-size: 14px;
+}
+
+.timeStamp {
+  color: #8d8d8d;
+  float: right;
+  font-size: 12px;
 }
 
 .inputForm {
@@ -166,13 +205,7 @@ body {
   background-color: #5cafff;
 }
 
-.chatBgClr {
-  background-color: #2196f3;
-}
-
-.chatClr {
-  padding: 0;
-  margin: 0;
-  color: red;
+.chat {
+  width: 360px;
 }
 /*# sourceMappingURL=styles.module.css.map */
