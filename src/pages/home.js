@@ -1,4 +1,5 @@
 import './src/style.css';
+import img from './src/vinyl.png';
 
 export const HomePage = () => {
 
@@ -6,7 +7,10 @@ export const HomePage = () => {
 
         <div className='content'>
             <div className='homePage'>
-                <h1 className='box_text'>This is HomePage!</h1>
+                <div className='animation'>
+                    <img className='img' src={img} alt='vinyl' />
+                    <h1 className='titel'>This is HomePage!</h1>
+                </div>
             </div>
         </div>
     )
