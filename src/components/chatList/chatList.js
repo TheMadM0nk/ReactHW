@@ -13,10 +13,12 @@ export const ChatList = () => {
 
     const addChat = () => {
         let user = prompt('Enter User name');
-        if (user) {
+        let validName = !chatList.includes(user);
+
+        if (user && validName) {
             dispach(createChat(user))
         } else {
-            alert('Enter User name!')
+            alert('Not valid name!')
         }
     };
 
