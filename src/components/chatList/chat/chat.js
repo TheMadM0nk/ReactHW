@@ -33,12 +33,11 @@ export const Chat = ({ name, selected, handler }) => {
             <Box sx={{ marginTop: '10px' }}
                 onClick={linkHandler}
             >
-
                 <Button sx={{ padding: '2px' }}
                     variant="contained"
                     color='error'
                     name={name}
-                    onClick={handler}
+                    onClick={() => handler(name)}
                 >
                     DEL
                 </Button>

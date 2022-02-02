@@ -22,7 +22,7 @@ export const ProfilePage = () => {
                             <input
                                 id='checkBox'
                                 type='checkbox'
-                                defaultChecked={state.checked}
+                                defaultChecked={state.profile.checked}
                                 onChange={() => dispach(switchChecked())}
                             />
                             <label htmlFor='checkBox'><b> &nbsp; Check box для ДЗ</b></label>

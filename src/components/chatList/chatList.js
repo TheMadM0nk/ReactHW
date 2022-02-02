@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { List, Divider, Box } from '@mui/material';
 import { Button } from './chatStyles';
 import { Chat } from './chat/chat';
 import { Link, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { createChat, deleteChat } from '../../store/chat_list/actions'
 
 export const ChatList = () => {
-    const [chatList, setChatList] = useState(['Gogi', 'Marcel', 'Gumbo']);
+    const chatList = useSelector(state => state.chatList.chats);
+    const dispach = useDispatch();
     const { chatId } = useParams();
 
     const addChat = () => {
         let user = prompt('Enter User name');
-        if (user !== '') {
-            setChatList([...chatList, user])
+        if (user) {
+            dispach(createChat(user))
         } else {
             alert('Enter User name!')
         }
     };
 
-    const delChat = (e) => {
-        let x = e.target.name;
-        setChatList(chatList.filter((i) => i !== x))
-    };
+    const removeChat = useCallback((chatName) => {
+        dispach(deleteChat(chatName));
+    }, [dispach]);
 
     return (
         <List >
             {chatList.map((chat) => (
                 <Link key={chat} to={`/chats/${chat}`}>
-                    <Chat name={chat} selected={chatId === chat} handler={delChat} />
+                    <Chat name={chat} selected={chatId === chat} handler={removeChat} />
                     <Divider component="li" />
                 </Link>
             ))}

@@ -1,5 +1,5 @@
-import { SWITCHCHECKED } from "./types"
+import { TOGGLE_CHECKBOX } from "./types"
 
 export const switchChecked = () => {
-    return { type: SWITCHCHECKED };
+    return { type: TOGGLE_CHECKBOX };
 }
