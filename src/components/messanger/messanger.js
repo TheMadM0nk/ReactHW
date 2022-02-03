@@ -5,8 +5,9 @@ import style from '../../styles.module.css';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { messangerSelector } from '../../store/messanger/selectors';
+import { sendMessage } from '../../store/messanger';
 
 export const Messanger = () => {
 
@@ -16,7 +17,13 @@ export const Messanger = () => {
   const { chatId } = useParams();
   const messages = useSelector(messangerSelector(chatId))
   const myRef = useRef(null);
+  const dispatch = useDispatch();
 
+
+  const sendMsg = () => {
+    dispatch(sendMessage(chatId, value));
+    setValue('');
+  }
 
   // const sendMsg = useCallback(
   //   (message, author = chatId, style = 'msg_container') => {
@@ -80,7 +87,7 @@ export const Messanger = () => {
           <Button
             variant="contained"
             endIcon={<SendIcon />}
-          // onClick={() => sendMsg(value)}
+            onClick={sendMsg}
           >Send
           </Button>
         </div>
