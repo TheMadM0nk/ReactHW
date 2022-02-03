@@ -3,11 +3,12 @@ import { List, Divider, Box } from '@mui/material';
 import { Button } from './chatStyles';
 import { Chat } from './chat/chat';
 import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { createChat, deleteChat } from '../../store/chat_list/actions'
+import { chatSelector } from '../../store/chat_list/selectors';
 
 export const ChatList = () => {
-    const chatList = useSelector(state => state.chatList.chats);
+    const chatList = useSelector(chatSelector, shallowEqual);
     const dispach = useDispatch();
     const { chatId } = useParams();
 

@@ -5,52 +5,56 @@ import style from '../../styles.module.css';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { messangerSelector } from '../../store/messanger/selectors';
 
 export const Messanger = () => {
 
-  const [messageList, setMessageList] = useState({});
+
+  // const [messageList, setMessageList] = useState({});
   const [value, setValue] = useState('');
   const { chatId } = useParams();
+  const messages = useSelector(messangerSelector(chatId))
   const myRef = useRef(null);
 
 
-  const sendMsg = useCallback(
-    (message, author = chatId, style = 'msg_container') => {
-      if (message) {
-        setMessageList((state) => ({
-          ...state,
-          [chatId]: [...(state[chatId] ?? []),
-          { author, message, date: new Date(), style }],
-        }));
-        setValue('');
-      }
-    }, [chatId]);
+  // const sendMsg = useCallback(
+  //   (message, author = chatId, style = 'msg_container') => {
+  //     if (message) {
+  //       setMessageList((state) => ({
+  //         ...state,
+  //         [chatId]: [...(state[chatId] ?? []),
+  //         { author, message, date: new Date(), style }],
+  //       }));
+  //       setValue('');
+  //     }
+  //   }, [chatId]);
 
-  const handlePressInput = (e) => {
-    if (e.code === "Enter") {
-      sendMsg(value);
-    }
-  };
+  // const handlePressInput = (e) => {
+  //   if (e.code === "Enter") {
+  //     sendMsg(value);
+  //   }
+  // };
 
-  useEffect(() => {
-    myRef.current?.focus();
-  }, [myRef]);
+  // useEffect(() => {
+  //   myRef.current?.focus();
+  // }, [myRef]);
 
-  useEffect(() => {
-    const messages = messageList[chatId] ?? [];
-    const lastMessage = messages[messages.length - 1];
-    let timerId = null;
+  // useEffect(() => {
+  //   const messages = messageList[chatId] ?? [];
+  //   const lastMessage = messages[messages.length - 1];
+  //   let timerId = null;
 
-    if (messages.length && lastMessage.author !== "Bot:") {
-      timerId = setTimeout(() => {
-        sendMsg("Message recived!", "Bot:", 'botStyle');
-      }, 1500);
-      return () => clearInterval(timerId);
+  //   if (messages.length && lastMessage.author !== "Bot:") {
+  //     timerId = setTimeout(() => {
+  //       sendMsg("Message recived!", "Bot:", 'botStyle');
+  //     }, 1500);
+  //     return () => clearInterval(timerId);
 
-    }
-  }, [messageList, chatId, sendMsg]);
+  //   }
+  // }, [messageList, chatId, sendMsg]);
 
-  const messages = messageList[chatId] ?? [];
+  // const messages = messageList[chatId] ?? [];
 
   return (
 
@@ -68,7 +72,7 @@ export const Messanger = () => {
         <input
           ref={myRef}
           value={value}
-          onKeyPress={handlePressInput}
+          // onKeyPress={handlePressInput}
           onChange={(event) => setValue(event.target.value)}
           className={style.textInput} />
         <div className={style.inputForm_btnBox}>
@@ -76,7 +80,8 @@ export const Messanger = () => {
           <Button
             variant="contained"
             endIcon={<SendIcon />}
-            onClick={() => sendMsg(value)}>Send
+          // onClick={() => sendMsg(value)}
+          >Send
           </Button>
         </div>
       </div>
