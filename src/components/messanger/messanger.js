@@ -20,36 +20,29 @@ export const Messanger = () => {
   const dispatch = useDispatch();
 
 
-  const sendMsg = () => {
-    dispatch(sendMessage(chatId, value));
+  const showLog = () => console.log(messages);
+
+  const sendMsg = useCallback(() => {
+    if (value) {
+      dispatch(sendMessage(chatId, value));
+    }
     setValue('');
-  }
 
-  // const sendMsg = useCallback(
-  //   (message, author = chatId, style = 'msg_container') => {
-  //     if (message) {
-  //       setMessageList((state) => ({
-  //         ...state,
-  //         [chatId]: [...(state[chatId] ?? []),
-  //         { author, message, date: new Date(), style }],
-  //       }));
-  //       setValue('');
-  //     }
-  //   }, [chatId]);
+  }, [chatId, value, dispatch]);
 
-  // const handlePressInput = (e) => {
-  //   if (e.code === "Enter") {
-  //     sendMsg(value);
-  //   }
-  // };
+  const handlePressInput = (e) => {
+    if (e.code === "Enter") {
+      sendMsg(value);
+    }
+  };
+
+  useEffect(() => {
+    myRef.current?.focus();
+  }, [myRef]);
 
   // useEffect(() => {
-  //   myRef.current?.focus();
-  // }, [myRef]);
-
-  // useEffect(() => {
-  //   const messages = messageList[chatId] ?? [];
-  //   const lastMessage = messages[messages.length - 1];
+  //   const message = messages[chatId] ?? [];
+  //   const lastMessage = message[message.length - 1];
   //   let timerId = null;
 
   //   if (messages.length && lastMessage.author !== "Bot:") {
@@ -59,9 +52,8 @@ export const Messanger = () => {
   //     return () => clearInterval(timerId);
 
   //   }
-  // }, [messageList, chatId, sendMsg]);
+  // }, [messages, chatId, sendMsg]);
 
-  // const messages = messageList[chatId] ?? [];
 
   return (
 
@@ -79,11 +71,17 @@ export const Messanger = () => {
         <input
           ref={myRef}
           value={value}
-          // onKeyPress={handlePressInput}
+          onKeyPress={handlePressInput}
           onChange={(event) => setValue(event.target.value)}
           className={style.textInput} />
         <div className={style.inputForm_btnBox}>
           <Clock />
+          <Button
+            variant="contained"
+            endIcon={<SendIcon />}
+            onClick={showLog}
+          >showLog
+          </Button>
           <Button
             variant="contained"
             endIcon={<SendIcon />}
