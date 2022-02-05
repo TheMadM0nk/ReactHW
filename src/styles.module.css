@@ -28,6 +28,7 @@ body {
   background-color: #5858ad;
   border-left: 1px solid #3a3a3a;
   border-right: 1px solid #3a3a3a;
+  overflow-y: auto;
 }
 
 .noChat {
@@ -54,6 +55,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 600px;
+  overflow-y: auto;
+  overscroll-behavior-y: initial;
 }
 
 .navBar {
@@ -95,22 +99,25 @@ a {
 }
 
 .msg_container {
+  max-width: 500px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 5px 15px;
   background-color: #dadeff;
   border-radius: 10px;
-  margin: 1px 0;
+  margin-top: 5px;
   color: #374bff;
 }
 
-.msg_container p {
+.msg_container .msg_txt {
+  margin: 7px 0;
   word-break: break-word;
   color: black;
 }
 
 .botStyle {
+  margin-top: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -131,17 +138,13 @@ a {
   padding: 3px 12px;
   float: right;
   color: #8d8d8d !important;
-}
-
-.botStyle p {
-  color: #8d8d8d !important;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .timeStamp {
   color: #8d8d8d;
-  float: right;
   font-size: 12px;
+  float: left;
 }
 
 .inputForm {
@@ -187,6 +190,9 @@ a {
   padding: 4px;
   width: 200px;
   text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   background-color: #f2f8ff;
   border: 1px solid gainsboro;
   border-radius: 3px;
@@ -203,6 +209,24 @@ a {
   -webkit-box-shadow: 0 0 3px 1px #3a3a3a;
           box-shadow: 0 0 3px 1px #3a3a3a;
   background-color: #5cafff;
+}
+
+.del_btn {
+  background-color: #ff0000a8;
+  border: 1px solid gray;
+  margin-left: 10px;
+  border-radius: 79%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  float: right;
+  line-height: 6px;
+  font-size: 10px;
+  padding: 3px;
+}
+
+.del_btn:hover {
+  cursor: pointer;
 }
 
 .chat {

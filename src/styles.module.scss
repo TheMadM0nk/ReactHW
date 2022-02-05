@@ -32,6 +32,8 @@ body {
   background-color: $mainClr;
   border-left: 1px solid $borderClr;
   border-right: 1px solid $borderClr;
+  overflow-y: auto;
+  
 } 
 
 .noChat {
@@ -48,6 +50,9 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  height: 600px;
+  overflow-y: auto; 
+  overscroll-behavior-y:initial;  
 }
 
 .navBar {
@@ -85,20 +90,23 @@ a {
 
 .msg_container {
 
-  width: fit-content;        
+  max-width: 500px;  
+  width: fit-content;      
   padding: 5px 15px;    
   background-color: $msgBgClr;
   border-radius: 10px;
-  margin: 1px 0;
+  margin-top: 5px;
   color: rgb(55, 75, 255);
 
-  p {
+  .msg_txt {
+    margin: 7px 0;
     word-break: break-word;
     color: black;
   }
 }
 
 .botStyle {
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -108,19 +116,15 @@ a {
   border-radius: 10px;
   padding: 3px 12px;  
   float: right; 
-  color: $botClr !important;      
-  
-  p {
-    color: $botClr !important;
-    font-size: 14px;
-  }
+  color: $botClr !important;   
+  font-size: 12px;  
 }
 
 .timeStamp {
 
-  color: $botClr;
-  float: right;
+  color: $botClr;  
   font-size: 12px;
+  float: left;
 }
 
 .inputForm {
@@ -161,6 +165,7 @@ a {
   padding: 4px;
   width: 200px;
   text-align: center;
+  align-self: center;
   background-color: #f2f8ff;
   border: 1px solid gainsboro;
   border-radius: 3px;
@@ -175,6 +180,24 @@ a {
   border: 1px outset;
   box-shadow: 0 0 3px 1px #3a3a3a;
   background-color: #5cafff;
+}
+
+.del_btn {
+
+  background-color: #ff0000a8;
+  border: 1px solid gray;
+  margin-left: 10px;
+  border-radius: 79%;
+  align-self: center;
+  float: right;  
+  line-height: 6px;
+  font-size: 10px;
+  padding: 3px;
+
+  &:hover {
+
+    cursor: pointer;
+  }
 }
   
 
