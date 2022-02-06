@@ -17,7 +17,6 @@ export const Messanger = () => {
   const myRef = useRef(null);
   const dispatch = useDispatch();
 
-
   // ==================================================
   // const showLog = () => console.log(messages, myRef.current);
   // ====================================================
@@ -77,16 +76,15 @@ export const Messanger = () => {
             })} key={index}
           >
             <h4>{msg.author}&nbsp;</h4>
-            <p
-              className={classNames({
-                [style.msg_txt]: msg.author === chatId
-              })}
-            >
-              {msg.message}</p>
+            <p className={classNames({
+              [style.msg_txt]: msg.author === chatId
+            })}>
+              {msg.message}
+            </p>
             <span className={style.timeStamp}>&nbsp;{msg.date.toLocaleString('Ru-ru')}</span>
             <button
               className={style.del_btn}
-              onClick={() => dispatch(deleteMessage(chatId, msg.message?.id))}
+              onClick={() => dispatch(deleteMessage(chatId, msg.id))}
             >x</button>
           </div>))}
       </div>
@@ -96,7 +94,8 @@ export const Messanger = () => {
           value={value}
           onKeyPress={handlePressInput}
           onChange={(event) => setValue(event.target.value)}
-          className={style.textInput} />
+          className={style.textInput}
+        />
         <div className={style.inputForm_btnBox}>
           <Clock />
           {/* <Button

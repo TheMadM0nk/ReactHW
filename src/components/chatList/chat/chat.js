@@ -3,13 +3,12 @@ import { Box, ListItemAvatar, Avatar, Typography, Button } from '@mui/material';
 import { ListItem, ListItemText } from '../chatStyles';
 import { useLinkClickHandler } from "react-router-dom";
 
-export const Chat = ({ name, selected, handler }) => {
-
+export const Chat = ({ name, selected, handler, lastMessage }) => {
     const linkHandler = useLinkClickHandler('/chats');
 
     return (
 
-        <ListItem alignItems="flex-start"
+        <ListItem sx={{ height: '80px' }} alignItems="flex-start"
             button
             selected={selected}
         >
@@ -25,7 +24,7 @@ export const Chat = ({ name, selected, handler }) => {
                             component="span"
                             variant="body2"
                         >
-                            {"Last message text…"}
+                            <span>{lastMessage}</span>
                         </Typography>
                     </React.Fragment>
                 }
