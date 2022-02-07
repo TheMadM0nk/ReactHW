@@ -15,6 +15,9 @@ export const ChatList = () => {
     const { chatId } = useParams();
     const messages = useSelector(messangerSelector(chatId));
 
+    // = Вывод последнего сообщения.
+    // = Пока что реализация костыльная, и не работает как надо, 
+    // = не смог пока что сообразить как сделать
 
     const lastMessage = useCallback((name) => {
         if (chatId === name) {
@@ -23,6 +26,7 @@ export const ChatList = () => {
             return lastMessage;
         }
     }, [messages, chatId]);
+    // ==========================================
 
     const addChat = () => {
         let user = prompt('Enter User name');
