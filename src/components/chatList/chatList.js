@@ -21,7 +21,7 @@ export const ChatList = () => {
 
     const lastMessage = useCallback((name) => {
         if (chatId === name) {
-            const msg = { [chatId]: messages[messages.length - 2] ?? [] }
+            const msg = { [chatId]: messages[messages.length - 1] ?? [] }
             let lastMessage = msg[chatId].message;
             return lastMessage;
         }

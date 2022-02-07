@@ -8,7 +8,8 @@ import SendIcon from '@mui/icons-material/Send';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { messangerSelector } from '../../store/messanger/selectors';
-import { sendMessage, deleteMessage } from '../../store/messanger';
+import { deleteMessage } from '../../store/messanger';
+import { sendMessageWithBot } from '../../store/messanger';
 
 export const Messanger = () => {
   const [value, setValue] = useState('');
@@ -24,7 +25,7 @@ export const Messanger = () => {
 
   const sendMsg = useCallback((message, author = chatId) => {
     if (message) {
-      dispatch(sendMessage(chatId, { author: author, message }));
+      dispatch(sendMessageWithBot(chatId, { author: author, message }));
     }
     setValue('');
   }, [chatId, dispatch]);
@@ -49,19 +50,19 @@ export const Messanger = () => {
     myRef.current?.focus();
   }, [myRef]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const lastMessage = messages[messages.length - 1];
-    let timerId = null;
+  //   const lastMessage = messages[messages.length - 1];
+  //   let timerId = null;
 
-    if (messages.length && lastMessage.author === chatId) {
-      timerId = setTimeout(() => {
-        sendMsg("Message recived!", "Bot:");
-      }, 700);
-      return () => clearInterval(timerId);
+  //   if (messages.length && lastMessage.author === chatId) {
+  //     timerId = setTimeout(() => {
+  //       sendMsg("Message recived!", "Bot:");
+  //     }, 700);
+  //     return () => clearInterval(timerId);
 
-    }
-  }, [messages, chatId, sendMsg]);
+  //   }
+  // }, [messages, chatId, sendMsg]);
 
 
   return (
