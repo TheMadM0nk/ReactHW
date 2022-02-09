@@ -2,9 +2,12 @@ import React from 'react';
 import { Box, ListItemAvatar, Avatar, Typography, Button } from '@mui/material';
 import { ListItem, ListItemText } from '../chatStyles';
 import { useLinkClickHandler } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { lastMessageSelector } from '../../../store/chat/selectors';
 
-export const Chat = ({ name, selected, handler, lastMessage }) => {
+export const Chat = ({ name, selected, handler }) => {
     const linkHandler = useLinkClickHandler('/chats');
+    const lastMessage = useSelector(lastMessageSelector(name));
 
     return (
 
@@ -24,7 +27,7 @@ export const Chat = ({ name, selected, handler, lastMessage }) => {
                             component="span"
                             variant="body2"
                         >
-                            <span>{lastMessage}</span>
+                            {lastMessage.message}
                         </Typography>
                     </React.Fragment>
                 }

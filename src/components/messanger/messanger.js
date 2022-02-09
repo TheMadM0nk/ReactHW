@@ -50,20 +50,6 @@ export const Messanger = () => {
     myRef.current?.focus();
   }, [myRef]);
 
-  // useEffect(() => {
-
-  //   const lastMessage = messages[messages.length - 1];
-  //   let timerId = null;
-
-  //   if (messages.length && lastMessage.author === chatId) {
-  //     timerId = setTimeout(() => {
-  //       sendMsg("Message recived!", "Bot:");
-  //     }, 700);
-  //     return () => clearInterval(timerId);
-
-  //   }
-  // }, [messages, chatId, sendMsg]);
-
 
   return (
 
