@@ -14,6 +14,7 @@ export const NavBar = () => {
                     <Link className={style.link} to="/"><Button>Home</Button></Link>
                     <Link className={style.link} to="/chats"><Button>Chats</Button></Link>
                     <Link className={style.link} to="/profile"><Button>Profile</Button></Link>
+                    <Link className={style.link} to="/gists"><Button>Gists</Button></Link>
                 </nav>
             </div>
         </div>

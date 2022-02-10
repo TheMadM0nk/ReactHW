@@ -49,7 +49,7 @@ body {
     background-color: #ffffff;    
     padding: 50px;
     border-radius: 35px;
-    box-shadow: -2pt 0 1pt 0 darkgray;
+    /* box-shadow: -2pt 0 1pt 0 darkgray; */
 }
 
 .img {

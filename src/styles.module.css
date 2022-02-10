@@ -2,6 +2,12 @@ body {
   background-color: #483a7a;
 }
 
+.gists_titel {
+  margin: 0 auto;
+  color: #fff;
+  text-shadow: 0 0 7px #000;
+}
+
 .container {
   width: 1160px;
   margin: 0 auto;
@@ -231,5 +237,28 @@ a {
 
 .chat {
   width: 360px;
+}
+
+.btn_box {
+  width: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn_box button {
+  margin: 5px;
+  padding: 3px 5px;
+  background-color: #0099ff;
+  border: 1px solid #3a3a3a;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.btn_box button:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.module.css.map */
