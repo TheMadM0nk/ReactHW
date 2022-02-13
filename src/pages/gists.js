@@ -1,44 +1,30 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getGists } from "../store/gists";
+import { Routes, Route } from 'react-router-dom';
+import { GistsPage } from './gistsPage';
+import { GistsSearch } from './gistsSearch';
+import { Link } from 'react-router-dom';
+import style from '../styles.module.css';
+import { Button } from '../components/chatList/chatStyles';
 import classNames from 'classnames';
-import style from '../styles.module.css'
 
-
-const buttons = Array.from({ length: 10 }).map((_, index) => index + 1);
-
-export function GistsPage() {
-  const dispatch = useDispatch();
-  const { gists, pending, error } = useSelector((state) => state.gists);
-
-  useEffect(() => {
-    dispatch(getGists());
-  }, [dispatch]);
-
-  if (pending) {
-    return <h1>pending....</h1>;
-  }
-
-  if (error) {
-    return <h1>error....</h1>;
-  }
+export const Gists = () => {
 
   return (
     <div className={classNames(style.main_center, style.container)}>
-      <h1 className={style.gists_titel}>GistsPage</h1>
-
-      {gists.map((gist) => (
-        <h2 key={gist.url}>{gist.url}</h2>
-      ))}
-
-      <div className={style.btn_box}>
-        {buttons.map((button) => (
-          <button onClick={() => dispatch(getGists(button))} key={button}>
-            {button}
-          </button>
-        ))}
+      <div className={style.linkGists}>
+        <Link className={style.link} to="/gists"><Button>Gists</Button></Link>
+        <Link className={style.link} to="/gists/search"><Button>Gists Search</Button></Link>
       </div>
+
+      <Routes >
+        <Route
+          path='/'
+          element={<GistsPage />}
+        />
+        <Route
+          path='/search'
+          element={<GistsSearch />}
+        />
+      </Routes>
     </div>
-  );
+  )
 }
