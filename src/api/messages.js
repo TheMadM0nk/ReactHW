@@ -6,7 +6,7 @@ export const getMessagesApi = () => {
 };
 
 export const sendMessageApi = async (chatId, message) => {
-    const newMessage = { ...message, id: nanoid(), date: String(new Date()) };
+    const newMessage = { ...message, id: nanoid(), date: (new Date().toLocaleString('Ru-ru')) };
 
     await db.ref("messages").child(chatId).push(newMessage);
 

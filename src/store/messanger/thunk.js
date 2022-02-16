@@ -51,17 +51,8 @@ export const sendMessageFB = (chatId, message) => async (dispatch, _, api) => {
         const newMessage = await api.sendMessageApi(chatId, message);
 
         dispatch(sendMessagesSuccess(chatId, newMessage));
+        console.log(message);
 
-        // if (message.author !== "Bot:") {
-        //     setTimeout(() => {
-        //         dispatch(
-        //             sendMessageFB(chatId, {
-        //                 author: "Bot",
-        //                 message: "Hello from bot thunk",
-        //             })
-        //         );
-        //     }, 500);
-        // }
     } catch (e) {
         dispatch(sendMessagesError(e));
     }

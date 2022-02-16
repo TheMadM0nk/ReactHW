@@ -11,5 +11,5 @@ export const createChatApi = (chatId) => {
         .set({ title: chatId, value: "" });
 };
 
-let test = 'Gogi';
-createChatApi(test);
+// let test = 'Gogi';
+// createChatApi(test);

@@ -45,7 +45,7 @@ export const messangerReducer = (state = initState, action) => {
         case GET_MESSAGES_START:
             return { ...state, pending: true, error: null };
         case GET_MESSAGES_SUCCESS:
-            return { ...state, pending: false, messages: action.payload ?? {} };
+            return { ...state, pending: false, messages: action.payload };
         case GET_MESSAGES_ERROR:
             return { ...state, pending: false, error: action.payload };
         default:

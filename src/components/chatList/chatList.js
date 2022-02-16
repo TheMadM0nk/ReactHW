@@ -33,7 +33,7 @@ export const ChatList = () => {
     return (
         <List >
             {chatList.map((chat) => (
-                <Link key={chat.title} to={`/chats/${chat.title}`}>
+                <Link key={chat} to={`/chats/${chat.title}`}>
                     <Chat name={chat.title}
                         selected={chatId === chat.title}
                         handler={removeChat}
