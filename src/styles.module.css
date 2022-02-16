@@ -95,13 +95,13 @@ body {
 }
 
 .linkBox {
-  width: 220px;
+  width: 360px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
 }
 
 .linkGists {

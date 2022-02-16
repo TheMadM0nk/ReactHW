@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 
 const searchGistsDebounce = debounce((query, dispatch) => {
     dispatch(searchGists(query));
-}, 2000);
+}, 1000);
 
 export function GistsSearch() {
     const [value, setValue] = useState('bogdanq');

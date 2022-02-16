@@ -19,7 +19,8 @@ const reducer = combineReducers({
     profile: profileReducer,
     chatList: chatListReducer,
     messanger: messangerReducer,
-    gists: gistsReducer
+    gists: gistsReducer,
+
 });
 
 export const persReduser = persistReducer(persistConfig, reducer);
