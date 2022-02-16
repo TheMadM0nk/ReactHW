@@ -1,12 +1,15 @@
 import { db } from "./firebase";
 
-export const getConversationsApi = () => {
-    return db.ref("conversations").get();
+export const getChatsApi = () => {
+    return db.ref("chats").get();
 };
 
-export const createConversationApi = (chatId) => {
+export const createChatApi = (chatId) => {
     return db
-        .ref("conversations")
+        .ref("chats")
         .child(chatId)
-        .set({ name: chatId, value: "" });
+        .set({ title: chatId, value: "" });
 };
+
+let test = 'Gogi';
+createChatApi(test);

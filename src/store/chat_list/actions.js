@@ -1,4 +1,10 @@
-import { ADD_CHAT, DEL_CHAT } from './types';
+import {
+    ADD_CHAT,
+    DEL_CHAT,
+    GET_CHATS_START,
+    GET_CHATS_SUCCESS,
+    GET_CHATS_ERROR
+} from './types';
 
 export const createChat = (chatName) => ({
     type: ADD_CHAT,
@@ -8,4 +14,19 @@ export const createChat = (chatName) => ({
 export const deleteChat = (chatName) => ({
     type: DEL_CHAT,
     payload: chatName
+});
+
+
+export const getChatsStart = () => ({
+    type: GET_CHATS_START
+});
+
+export const getChatsSuccess = (chats) => ({
+    type: GET_CHATS_SUCCESS,
+    payload: chats
+});
+
+export const getChatsError = (error) => ({
+    type: GET_CHATS_ERROR,
+    payload: error
 });

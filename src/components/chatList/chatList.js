@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { List, Divider, Box } from '@mui/material';
 import { Button } from './chatStyles';
 import { Chat } from './chat/chat';
@@ -6,10 +6,11 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { createChat, deleteChat } from '../../store/chat_list/actions'
 import { chatSelector } from '../../store/chat_list/selectors';
+import { getChatsFB } from '../../store/chat_list';
 
 export const ChatList = () => {
     const chatList = useSelector(chatSelector);
-    const dispach = useDispatch();
+    const dispatch = useDispatch();
 
     const { chatId } = useParams();
 
@@ -18,22 +19,23 @@ export const ChatList = () => {
         let validName = !chatList.includes(user);
 
         if (user && validName) {
-            dispach(createChat(user))
+            dispatch(createChat(user))
         } else {
             alert('Not valid name!')
         }
     };
 
     const removeChat = useCallback((chatName) => {
-        dispach(deleteChat(chatName));
-    }, [dispach]);
+        dispatch(deleteChat(chatName));
+    }, [dispatch]);
+
 
     return (
         <List >
             {chatList.map((chat) => (
-                <Link key={chat} to={`/chats/${chat}`}>
-                    <Chat name={chat}
-                        selected={chatId === chat}
+                <Link key={chat.title} to={`/chats/${chat.title}`}>
+                    <Chat name={chat.title}
+                        selected={chatId === chat.title}
                         handler={removeChat}
                     />
                     <Divider component="li" />

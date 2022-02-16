@@ -8,8 +8,8 @@ import SendIcon from '@mui/icons-material/Send';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { messangerSelector } from '../../store/messanger/selectors';
-import { deleteMessage } from '../../store/messanger';
-import { sendMessageWithBot } from '../../store/messanger';
+import { deleteMessage, getMessages } from '../../store/messanger';
+import { sendMessageFB } from '../../store/messanger';
 
 export const Messanger = () => {
   const [value, setValue] = useState('');
@@ -18,16 +18,12 @@ export const Messanger = () => {
   const myRef = useRef(null);
   const dispatch = useDispatch();
 
-  // ==================================================
-  // const showLog = () => console.log(messages, myRef.current);
-  // ====================================================
-
-
   const sendMsg = useCallback((message, author = chatId) => {
     if (message) {
-      dispatch(sendMessageWithBot(chatId, { author: author, message }));
+      dispatch(sendMessageFB(chatId, { author, message }));
     }
     setValue('');
+    dispatch(getMessages());
   }, [chatId, dispatch]);
 
   const handlePressInput = (e) => {
@@ -85,11 +81,6 @@ export const Messanger = () => {
         />
         <div className={style.inputForm_btnBox}>
           <Clock />
-          {/* <Button
-            variant="contained"            
-            onClick={showLog}
-          >showLog
-          </Button> */}
           <Button
             variant="contained"
             endIcon={<SendIcon />}
