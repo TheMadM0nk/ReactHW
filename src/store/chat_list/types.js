@@ -1,3 +1,7 @@
+export const CREATE_CHAT_START = "@chat_list/CREATE_CHAT_START";
+export const CREATE_CHAT_SUCCESS = "@chat_list/CREATE_CHAT_SUCCESS";
+export const CREATE_CHAT_ERROR = "@chat_list/CREATE_CHAT_ERROR";
+
 export const ADD_CHAT = '@chat_list/ADD_CHAT';
 export const DEL_CHAT = '@chat_list/DEL_CHAT';
 

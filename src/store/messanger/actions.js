@@ -28,27 +28,22 @@ export const deleteMessage = (chatId, messageId) => ({
 export const getMessagesStart = () => ({
     type: GET_MESSAGES_START
 });
-
 export const getMessagesSuccess = (messages) => ({
     type: GET_MESSAGES_SUCCESS,
     payload: messages
 });
-
 export const getMessagesError = (error) => ({
     type: GET_MESSAGES_ERROR,
     payload: error
 });
 
-
 export const sendMessagesStart = () => ({
     type: SEND_MESSAGE_START
 });
-
 export const sendMessagesSuccess = (chatId, message) => ({
     type: SEND_MESSAGE_SUCCESS,
     payload: { chatId, message }
 });
-
 export const sendMessagesError = (error) => ({
     type: SEND_MESSAGE_ERROR,
     payload: error

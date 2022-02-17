@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import {
     SEND_MESSAGE,
     DELETE_MESSAGE,
@@ -19,6 +18,9 @@ const initState = {
 export const messangerReducer = (state = initState, action) => {
 
     switch (action.type) {
+        case SEND_MESSAGE_START:
+            return { ...state, pending: true, error: null };
+
         case SEND_MESSAGE:
         case SEND_MESSAGE_SUCCESS:
             return {
@@ -26,12 +28,14 @@ export const messangerReducer = (state = initState, action) => {
                     ...state.message,
                     [action.payload.chatId]: [...(state.message[action.payload.chatId] ?? []),
                     {
-                        ...action.payload.value,
-                        date: new Date(),
-                        id: nanoid()
+                        ...action.payload.value
                     }]
                 }
-            }
+            };
+
+        case SEND_MESSAGE_ERROR:
+            return { ...state, pending: false, error: action.payload };
+
         case DELETE_MESSAGE:
             return {
                 ...state, messages: {
@@ -41,7 +45,8 @@ export const messangerReducer = (state = initState, action) => {
                     )
 
                 }
-            }
+            };
+
         case GET_MESSAGES_START:
             return { ...state, pending: true, error: null };
         case GET_MESSAGES_SUCCESS:

@@ -6,10 +6,8 @@ import style from '../styles.module.css';
 const buttons = Array.from({ length: 5 }).map((_, index) => index + 1);
 
 export function GistsPage() {
-
     const dispatch = useDispatch();
     const { gists, pending, errorGists } = useSelector((state) => state.gists);
-
 
     useEffect(() => {
         dispatch(getGists());

@@ -51,7 +51,8 @@ export const sendMessageFB = (chatId, message) => async (dispatch, _, api) => {
         const newMessage = await api.sendMessageApi(chatId, message);
 
         dispatch(sendMessagesSuccess(chatId, newMessage));
-        console.log(message);
+
+        console.log('sdfsdfs')
 
     } catch (e) {
         dispatch(sendMessagesError(e));

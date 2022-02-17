@@ -3,7 +3,6 @@ import MuiListItemText from '@mui/material/ListItemText';
 import MuiListItem from '@mui/material/ListItem';
 import { styled } from '@mui/material/styles';
 
-
 export const ListItem = styled(MuiListItem)({
     '&.Mui-selected': {
         backgroundColor: '#0d47a1'

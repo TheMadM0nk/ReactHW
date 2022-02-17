@@ -10,12 +10,10 @@ import {
 export const getGistsStart = () => ({
   type: GET_GISTS_START,
 });
-
 export const getGistsSuccess = (gists) => ({
   type: GET_GISTS_SUCCESS,
   payload: gists,
 });
-
 export const getGistsError = (error) => ({
   type: GET_GISTS_ERROR,
   payload: error,
@@ -24,12 +22,10 @@ export const getGistsError = (error) => ({
 export const searchGistsStart = () => ({
   type: SEARCH_GISTS_START,
 });
-
 export const searchGistsSuccess = (gists) => ({
   type: SEARCH_GISTS_SUCCESS,
   payload: gists,
 });
-
 export const searchGistsError = (error) => ({
   type: SEARCH_GISTS_ERROR,
   payload: error,

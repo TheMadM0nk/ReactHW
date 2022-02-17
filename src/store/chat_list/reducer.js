@@ -1,4 +1,7 @@
 import {
+    CREATE_CHAT_START,
+    CREATE_CHAT_SUCCESS,
+    CREATE_CHAT_ERROR,
     ADD_CHAT,
     DEL_CHAT,
     GET_CHATS_START,
@@ -14,8 +17,16 @@ const initState = {
 
 export const chatListReducer = (state = initState, action) => {
     switch (action.type) {
+        case CREATE_CHAT_START:
+            return { ...state, pending: true, error: null };
+
         case ADD_CHAT:
-            return { ...state, chats: [...state.chats, action.payload] };
+        case CREATE_CHAT_SUCCESS:
+            return { ...state, chats: [...state.chats.title, action.payload] };
+
+        case CREATE_CHAT_ERROR:
+            return { ...state, pending: false, error: action.payload };
+
         case DEL_CHAT:
             return {
                 ...state,

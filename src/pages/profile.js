@@ -8,7 +8,6 @@ export const ProfilePage = () => {
     const dispach = useDispatch();
 
     return (
-
         <div className="content">
             <div className='container'>
                 < div className="center">

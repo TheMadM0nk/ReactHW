@@ -12,8 +12,3 @@ export const sendMessageApi = async (chatId, message) => {
 
     return newMessage;
 };
-
-// let x = 'Gogi';
-// let y = 'Hello there';
-
-// sendMessageApi(x, y);

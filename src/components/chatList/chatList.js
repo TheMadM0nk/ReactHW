@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { List, Divider, Box } from '@mui/material';
 import { Button } from './chatStyles';
 import { Chat } from './chat/chat';
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { createChat, deleteChat } from '../../store/chat_list/actions'
+import { deleteChat } from '../../store/chat_list/actions'
 import { chatSelector } from '../../store/chat_list/selectors';
-import { getChatsFB } from '../../store/chat_list';
+import { createChatFB, getChatsFB } from '../../store/chat_list';
 
 export const ChatList = () => {
     const chatList = useSelector(chatSelector);
@@ -19,7 +19,8 @@ export const ChatList = () => {
         let validName = !chatList.includes(user);
 
         if (user && validName) {
-            dispatch(createChat(user))
+            dispatch(createChatFB(user));
+            dispatch(getChatsFB());
         } else {
             alert('Not valid name!')
         }
@@ -29,11 +30,10 @@ export const ChatList = () => {
         dispatch(deleteChat(chatName));
     }, [dispatch]);
 
-
     return (
         <List >
             {chatList.map((chat) => (
-                <Link key={chat} to={`/chats/${chat.title}`}>
+                <Link to={`/chats/${chat.title}`} key={chat.title} >
                     <Chat name={chat.title}
                         selected={chatId === chat.title}
                         handler={removeChat}

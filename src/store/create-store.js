@@ -8,7 +8,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { botMessage } from "./middlewares";
 import { getPublicGistsApi, searchGistsApi } from "../api/gists";
-import { getChatsApi } from "../api/chats";
+import { getChatsApi, createChatApi } from "../api/chats";
 import { getMessagesApi, sendMessageApi } from "../api/messages";
 
 const persistConfig = {
@@ -36,6 +36,7 @@ export const store = createStore(
             getChatsApi,
             getMessagesApi,
             sendMessageApi,
+            createChatApi,
         })),
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__()

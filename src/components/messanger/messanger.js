@@ -46,7 +46,6 @@ export const Messanger = () => {
     myRef.current?.focus();
   }, [myRef]);
 
-
   return (
 
     <main className={style.noChat}>

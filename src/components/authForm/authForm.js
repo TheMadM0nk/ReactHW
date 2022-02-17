@@ -10,6 +10,12 @@ export const AuthForm = ({ onsubmit }) => {
         });
     };
 
+    const handlePressInput = (e) => {
+        if (e.code === "Enter") {
+            onsubmit(form.email, form.password);
+        }
+    };
+
     return (
         <div>
 
@@ -21,6 +27,7 @@ export const AuthForm = ({ onsubmit }) => {
                 value={form.email}
             />
             <input
+                onKeyPress={handlePressInput}
                 placeholder="password"
                 onChange={handleChangeForm}
                 data-name="password"
