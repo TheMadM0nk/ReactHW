@@ -3,6 +3,7 @@ import { profileReducer } from "./profile";
 import { chatListReducer } from './chat_list'
 import { messangerReducer } from "./messanger/reducer";
 import { gistsReducer } from "./gists";
+import { signinReducer } from "./signin_status/reducer";
 import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -22,7 +23,7 @@ const reducer = combineReducers({
     chatList: chatListReducer,
     messanger: messangerReducer,
     gists: gistsReducer,
-
+    signin: signinReducer,
 });
 
 export const persReduser = persistReducer(persistConfig, reducer);

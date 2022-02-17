@@ -21,7 +21,6 @@ import {
 //                 })
 //             );
 //         }, 500);
-
 //         return () => clearInterval(timerId);
 //     }
 // };
@@ -52,7 +51,20 @@ export const sendMessageFB = (chatId, message) => async (dispatch, _, api) => {
 
         dispatch(sendMessagesSuccess(chatId, newMessage));
 
+        // не понимаю почему после sendMessagesSuccess не отрабатывает консоль,
+        // и как следствие не работает бот... 
+
         console.log('sdfsdfs')
+        if (message.author !== "Bot:") {
+            setTimeout(() => {
+                dispatch(
+                    sendMessageFB(chatId, {
+                        author: "Bot:",
+                        message: "Message recived! (thunk bot)",
+                    })
+                );
+            }, 500);
+        }
 
     } catch (e) {
         dispatch(sendMessagesError(e));

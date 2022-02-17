@@ -5,7 +5,7 @@ import { switchChecked } from '../store/profile/actions';
 
 export const ProfilePage = () => {
     const state = useSelector(state => state);
-    const dispach = useDispatch();
+    const dispatch = useDispatch();
 
     return (
         <div className="content">
@@ -22,7 +22,7 @@ export const ProfilePage = () => {
                                 id='checkBox'
                                 type='checkbox'
                                 defaultChecked={state.profile.checked}
-                                onChange={() => dispach(switchChecked())}
+                                onChange={() => dispatch(switchChecked())}
                             />
                             <label htmlFor='checkBox'><b> &nbsp; Check box для ДЗ</b></label>
                         </p>
