@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, ListItemAvatar, Avatar, Typography, Button } from '@mui/material';
+import { Box, ListItemAvatar, Avatar, Button } from '@mui/material';
 import { ListItem, ListItemText } from '../chatStyles';
 import { useLinkClickHandler } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -13,10 +13,12 @@ export const Chat = ({ name, selected, handler }) => {
 
         <ListItem sx={{ height: '80px' }} alignItems="flex-start"
             button
+            role={'buttonChat'}
             selected={selected}
+            data-testid='chatTestId'
         >
             <ListItemAvatar>
-                <Avatar alt="Remy Sharp" />
+                <Avatar alt={name} />
             </ListItemAvatar>
             <ListItemText
                 primary={name}
@@ -29,6 +31,7 @@ export const Chat = ({ name, selected, handler }) => {
                     variant="contained"
                     color='error'
                     name={name}
+                    data-testid='deleteButton'
                     onClick={() => handler(name)}
                 >
                     DEL

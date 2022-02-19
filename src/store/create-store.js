@@ -18,7 +18,7 @@ const persistConfig = {
     whitelist: ["profile"],
 };
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
     profile: profileReducer,
     chatList: chatListReducer,
     messanger: messangerReducer,
@@ -31,16 +31,20 @@ export const persReduser = persistReducer(persistConfig, reducer);
 export const store = createStore(
     persReduser,
     compose(
-        applyMiddleware(botMessage, thunk.withExtraArgument({
-            getPublicGistsApi,
-            searchGistsApi,
-            getChatsApi,
-            getMessagesApi,
-            sendMessageApi,
-            createChatApi,
-        })),
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
+        applyMiddleware(
+            botMessage,
+            thunk.withExtraArgument({
+                getPublicGistsApi,
+                searchGistsApi,
+                getChatsApi,
+                getMessagesApi,
+                sendMessageApi,
+                createChatApi,
+            })
+        ),
+        window.__REDUX_DEVTOOLS_EXTENSION__
+            ? window.__REDUX_DEVTOOLS_EXTENSION__()
+            : (args) => args
     )
 );
 
