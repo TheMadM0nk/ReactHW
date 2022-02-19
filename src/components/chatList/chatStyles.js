@@ -31,6 +31,10 @@ export const ListItemText = styled(MuiListItemText)({
         color: '#b3e5fc',
     },
     '& .MuiListItemText-secondary': {
-        color: 'gray'
+        color: 'gray',
+        width: '180px',
+        height: '15px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
     }
 });

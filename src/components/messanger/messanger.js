@@ -8,7 +8,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { messangerSelector } from '../../store/messanger/selectors';
-import { deleteMessage, getMessages } from '../../store/messanger';
+import { deleteMessage } from '../../store/messanger';
 import { sendMessageFB } from '../../store/messanger';
 
 export const Messanger = () => {
@@ -20,11 +20,10 @@ export const Messanger = () => {
 
   const sendMsg = useCallback((message, author = chatId) => {
     if (message) {
-      dispatch(sendMessageFB(chatId, { author, message }));
+      dispatch(sendMessageFB(chatId, { author: author, message: message }));
     }
     setValue('');
-    dispatch(getMessages());
-  }, [chatId, dispatch]);
+  }, [chatId, dispatch, setValue]);
 
   const handlePressInput = (e) => {
     if (e.code === "Enter") {
@@ -63,7 +62,7 @@ export const Messanger = () => {
             })}>
               {msg.message}
             </p>
-            <span className={style.timeStamp}>&nbsp;{msg.date.toLocaleString('Ru-ru')}</span>
+            <span className={style.timeStamp}>&nbsp;{msg.date}</span>
             <button
               className={style.del_btn}
               onClick={() => dispatch(deleteMessage(chatId, msg.id))}
@@ -72,7 +71,7 @@ export const Messanger = () => {
       </div>
 
       <div className={style.inputForm}>
-        <input
+        <textarea
           value={value}
           onKeyPress={handlePressInput}
           onChange={(event) => setValue(event.target.value)}

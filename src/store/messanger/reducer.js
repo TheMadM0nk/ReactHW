@@ -25,8 +25,8 @@ export const messangerReducer = (state = initState, action) => {
         case SEND_MESSAGE_SUCCESS:
             return {
                 ...state, messages: {
-                    ...state.message,
-                    [action.payload.chatId]: [...(state.message[action.payload.chatId] ?? []),
+                    ...state.messages,
+                    [action.payload.chatId]: [...(state.messages[action.payload.chatId] ?? []),
                     {
                         ...action.payload.value
                     }]
@@ -41,7 +41,7 @@ export const messangerReducer = (state = initState, action) => {
                 ...state, messages: {
                     ...state.messages,
                     [action.payload.chatId]: state.messages[action.payload.chatId].filter(
-                        (message) => message.id !== action.payload.messageId
+                        (messages) => messages.id !== action.payload.messageId
                     )
 
                 }

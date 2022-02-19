@@ -20,17 +20,7 @@ export const Chat = ({ name, selected, handler }) => {
             </ListItemAvatar>
             <ListItemText
                 primary={name}
-                secondary={
-                    <React.Fragment>
-                        <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                        >
-                            {lastMessage.message}
-                        </Typography>
-                    </React.Fragment>
-                }
+                secondary={lastMessage.message}
             />
             <Box sx={{ marginTop: '10px' }}
                 onClick={linkHandler}

@@ -8,22 +8,6 @@ import {
     sendMessagesError
 } from "./actions";
 
-// export const sendMessageWithBot = (chatId, message) => (dispatch, getState) => {
-//     dispatch(sendMessageFB(chatId, message));
-
-//     if (message.author !== "Bot:") {
-//         let timerId = null;
-//         timerId = setTimeout(() => {
-//             dispatch(
-//                 sendMessage(chatId, {
-//                     author: "Bot:",
-//                     message: "Message recived! (thunk bot)",
-//                 })
-//             );
-//         }, 500);
-//         return () => clearInterval(timerId);
-//     }
-// };
 
 export const getMessages = () => async (dispatch, _, api) => {
     const messages = {};
@@ -51,10 +35,6 @@ export const sendMessageFB = (chatId, message) => async (dispatch, _, api) => {
 
         dispatch(sendMessagesSuccess(chatId, newMessage));
 
-        // не понимаю почему после sendMessagesSuccess не отрабатывает консоль,
-        // и как следствие не работает бот... 
-
-        console.log('sdfsdfs')
         if (message.author !== "Bot:") {
             setTimeout(() => {
                 dispatch(
@@ -65,7 +45,7 @@ export const sendMessageFB = (chatId, message) => async (dispatch, _, api) => {
                 );
             }, 500);
         }
-
+        dispatch(getMessages());
     } catch (e) {
         dispatch(sendMessagesError(e));
     }
