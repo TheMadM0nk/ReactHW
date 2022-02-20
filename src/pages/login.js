@@ -1,11 +1,11 @@
-import { firebaseApp } from '../api/firebase';
+import { auth } from '../api/firebase';
 import { AuthForm } from "../components";
 import { useCallback } from "react";
 
 export function LoginPage() {
 
     const onSubmit = useCallback((email, password) => {
-        return firebaseApp.auth().signInWithEmailAndPassword(email, password);
+        return auth.signInWithEmailAndPassword(email, password);
     }, []);
 
     return (
